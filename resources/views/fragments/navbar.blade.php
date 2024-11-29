@@ -8,16 +8,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('index')}}">Inicio</a>
+            <a class="nav-link active" aria-current="page" href="{{route('index')}}">Inicio <i class="fa-solid fa-house"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('products.index')}}">Productos</a>
+            <a class="nav-link" href="{{route('products.index')}}">Productos  <i class="fa-solid fa-mug-hot"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('clients.index')}}">Clientes</a>
+            <a class="nav-link" href="{{route('clients.index')}}">Clientes  <i class="fa-solid fa-circle-user"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('sales.index')}}">Ventas</a>
+            <a class="nav-link" href="{{route('sales.index')}}">Ventas  <i class="fa-solid fa-bag-shopping"></i></a>
           </li>
         </ul>
       </div>
