@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand' => 'required|string|max:100|exists:brands,name',  // El mismo comportamiento que en store, ya que no es único para un producto específico.
+            'brand' => 'required|string|max:100',  // El mismo comportamiento que en store, ya que no es único para un producto específico.
             'description' => 'nullable|string|max:500',  // Descripción es opcional en la actualización, pero si se proporciona debe ser válida
         ];
     }

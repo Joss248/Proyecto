@@ -22,8 +22,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand' => 'required|string|max:100|exists:brands,name',  // 'brand' debe ser un string, existir en la tabla 'brands' y tener un máximo de 100 caracteres
-            'description' => 'required|string|max:500',  // 'description' es obligatoria, debe ser un string y tener un máximo de 500 caracteres
+            'brand' => 'required|string|max:100',  // 'brand' debe ser un string, existir en la tabla 'brands' y tener un máximo de 100 caracteres
+'description' => 'required|string|max:500',  // 'description' es obligatoria, debe ser un string y tener un máximo de 500 caracteres
         ];
     }
 }

@@ -26,7 +26,6 @@ class StoreRequest extends FormRequest
             'brand_id' => "required|exists:brands,id", // Asegura que el brand_id exista en la base de datos
             'stock' => "required|integer|min:0", // El stock no puede ser negativo
             'unit_price' => "required|numeric|min:0.01", // El precio debe ser un número mayor que 0
-            'nameProduct' => "unique:products,name", // Asegura que el nombre del producto no se repita
             'unit_price' => "lte:99999.99", // Limita el precio máximo a 99,999.99
             'stock' => "lte:10000", // Limita el stock máximo a 10,000
         ];
