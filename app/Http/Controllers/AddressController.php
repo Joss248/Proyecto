@@ -67,7 +67,6 @@ class AddressController extends Controller
     }
 
     public function delete(Address $address)
-    
     {
         echo view ('admin/addresses/delete', compact('address'));
     }
