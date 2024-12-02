@@ -3,8 +3,8 @@
 @section('content')
     <h2>Index Productos</h2>
     <br>
-    <button><a href="{{route('products.create')}}">Crear Producto</a></button>
-    <button><a href="{{route('brands.create')}}">Registrar Marcas</a></button>
+    <a type="button" class="btn btn-success" href="{{route('products.create')}}">Crear Producto</a>
+    <a type="button" class="btn btn-success" href="{{route('brands.create', ['from' => 'products'])}}">Registrar Marca</a>
     <br>
     <br>
 <table class="table table-striped table-bordered">

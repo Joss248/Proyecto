@@ -16,6 +16,7 @@
 
 <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="from" value="{{ request('from') }}">
     <label for=""> Nombre del Producto </label>
     <input type="text" name= "nameProduct">
 

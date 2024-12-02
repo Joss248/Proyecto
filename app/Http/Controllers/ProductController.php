@@ -54,6 +54,11 @@ class ProductController extends Controller
         }
 
         Product::create($data);
+
+        // Redirigir según el origen
+         if ($request->input('from') === 'sales') {
+              return to_route('sales.index')->with('status', 'Producto registrado');
+            }
         
         return to_route('products.index') -> with ('status', 'Producto Registrado');
     }
@@ -101,7 +106,6 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      */
     public function delete(Product $product)
-    
     {
         echo view ('admin/products/delete', compact('product'));
     }

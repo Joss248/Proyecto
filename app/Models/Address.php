@@ -6,20 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Sale extends Model
+class Address extends Model
 {
     use HasFactory;
     protected $fillable = [
         'client_id',
-        'product_id',
-        'sale_date'
+        'street',
+        'internal_num',
+        'external_num',
+        'neighborhood',
+        'town',
+        'state',
+        'country',
+        'postal_code',
+        'references'
     ];
 
     public function client():BelongsTo{
         return $this->belongsTo(Client::class,'client_id');
-    }
-
-    public function product():BelongsTo{
-        return $this->belongsTo(Product::class,'product_id');
     }
 }

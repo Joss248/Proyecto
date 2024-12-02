@@ -39,11 +39,16 @@ Route::delete('/destroyProducts/{product}', [App\Http\Controllers\ProductControl
 // Ruta Tipo Recursos para métodos REST, que permite crear las rutas para un CRUD de las 7 Funciones
 // de un controller.
 Route::resource('/products', App\Http\Controllers\ProductController::class);
-Route::get('/products/{product}/delete',[App\Http\Controllers\ProductController::class, 'delete'])-> name('products.delete');
 Route::resource('/brands', App\Http\Controllers\BrandController::class);
 Route::resource('/clients', App\Http\Controllers\ClientController::class);
 Route::resource('/sales', App\Http\Controllers\SaleController::class);
+Route::resource('/addresses', App\Http\Controllers\AddressController::class);
 
+Route::get('/products/{product}/delete',[App\Http\Controllers\ProductController::class, 'delete'])-> name('products.delete');
+Route::get('/brands/{brand}/delete',[App\Http\Controllers\BrandController::class, 'delete'])-> name('brands.delete');
+Route::get('/sales/{sale}/delete',[App\Http\Controllers\SaleController::class, 'delete'])-> name('sales.delete');
+Route::get('/clients/{client}/delete',[App\Http\Controllers\ClientController::class, 'delete'])-> name('clients.delete');
+Route::get('/Addresses/{address}/delete',[App\Http\Controllers\AddressController::class, 'delete'])-> name('addresses.delete');
 
 /*
 Route::get('/clients', function(){

@@ -16,12 +16,8 @@ return new class extends Migration
             $table->string('name', 40)->nullable()->default('nombre');
             $table->string('last_name', 40)->nullable()->default('apellido_paterno');
             $table->string('second_last_name', 40)->nullable()->default('apellido_materno');
-            $table->string('email', 50)->nullable()->default('email@gmail.com');
+            $table->string('email', 50)->nullable()->default('email@gmail.com')->unique();
             $table->bigInteger('phone')->nullable()->default(1234567890);
-            $table->string('state', 40)->nullable()->default('Veracruz');
-            $table->string('town', 40)->nullable()->default('Gtz. Zamora');
-
-
             $table->timestamps();
         });
     }

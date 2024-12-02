@@ -8,6 +8,7 @@
 
 <form action="{{route('brands.store')}}" method="POST">
     @csrf
+    <input type="hidden" name="from" value="{{ request('from') }}">
     <label for=""> Nombre de la Marca </label>
     <input type="text" name= "brand">
 

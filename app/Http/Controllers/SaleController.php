@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -13,7 +15,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view ('admin/sales/index');
+        $sales = Sale::paginate(5);
+        return view ('admin/sales/index', compact('sales'));
     }
 
     /**
@@ -21,7 +24,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::pluck('id', 'name');
+        $products = Product::pluck('id', 'nameProduct');
+        return view ('admin/sales/create', compact('clients','products'));
     }
 
     /**
@@ -29,7 +34,9 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Sale::create($data);
+        return to_route('sales.index') -> with ('status', 'Venta Registrada');
     }
 
     /**
@@ -37,7 +44,7 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        return view('admin/sales/show', compact('sale'));
     }
 
     /**
@@ -45,7 +52,9 @@ class SaleController extends Controller
      */
     public function edit(Sale $sale)
     {
-        //
+        $clients = Client::pluck('id', 'name');
+        $products = Product::pluck('id', 'nameProduct');
+        return view ('admin/sales/edit', compact('clients','products','sale'));
     }
 
     /**
@@ -53,7 +62,14 @@ class SaleController extends Controller
      */
     public function update(Request $request, Sale $sale)
     {
-        //
+        $data = $request->all();
+        $sale->update($data);
+        return to_route('sales.index') -> with ('status', 'Venta Actualizada');
+    }
+
+    public function delete(Sale $sale)
+    {
+        echo view ('admin/sales/delete', compact('sale'));
     }
 
     /**
@@ -61,6 +77,7 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        $sale->delete();
+        return to_route ('sales.index') -> with ('status', 'Venta Eliminada');
     }
 }

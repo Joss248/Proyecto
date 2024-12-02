@@ -13,7 +13,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view ('admin/clients/index');
+        $clients = Client::paginate(5);
+        return view ('admin/clients/index', compact('clients'));
     }
 
     /**
@@ -21,7 +22,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view ('admin/clients/create');
     }
 
     /**
@@ -29,7 +30,13 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Client::create($request->all());
+
+        if ($request->input('from') === 'sales') {
+            return to_route('sales.index')->with('status', 'Cliente registrado');
+        }
+
+        return to_route('clients.index') -> with ('status', 'Cliente Registrado');
     }
 
     /**
@@ -37,7 +44,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('admin/clients/show', compact('client'));
     }
 
     /**
@@ -45,7 +52,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        echo view ('admin/clients/edit', compact('client'));
     }
 
     /**
@@ -53,7 +60,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $data = $request->all();
+        $client->update($data);
+        return to_route('clients.index') -> with ('status', 'Cliente Actualizado');
+    }
+
+    public function delete(Client $client)
+    {
+        echo view ('admin/clients/delete', compact('client'));
     }
 
     /**
@@ -61,6 +75,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return to_route ('clients.index') -> with ('status', 'Cliente Eliminado');
     }
 }

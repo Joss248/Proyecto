@@ -13,7 +13,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::paginate(5);
+        return view ('admin/brands/index', compact('brands'));
     }
 
     /**
@@ -30,7 +31,12 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         Brand::create($request->all());
-        return to_route('products.index') -> with ('status', 'Marca Registrada');
+
+        if ($request->input('from') === 'products') {
+            return to_route('products.index')->with('status', 'Marca registrada');
+        }
+
+        return to_route('brands.index') -> with ('status', 'Marca Registrada');
     }
 
     /**
@@ -38,7 +44,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('admin/brands/show', compact('brand'));
     }
 
     /**
@@ -46,7 +52,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        echo view ('admin/brands/edit', compact('brand'));
     }
 
     /**
@@ -54,7 +60,14 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $data = $request->all();
+        $brand->update($data);
+        return to_route('brands.index') -> with ('status', 'Marca Actualizada');
+    }
+
+    public function delete(Brand $brand)
+    {
+        echo view ('admin/brands/delete', compact('brand'));
     }
 
     /**
@@ -62,6 +75,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return to_route ('brands.index') -> with ('status', 'Marca Eliminada');
     }
 }
