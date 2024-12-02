@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Products\StoreRequest;
+use App\Http\Requests\Products\UpdateRequest;
 use Illuminate\Http\Request;
 use tidy;
 
@@ -84,7 +85,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateRequest $request, Product $product)
     {
         $data = $request->all();
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Addresses\StoreRequest;
+use App\Http\Requests\Addresses\UpdateRequest;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -30,7 +32,7 @@ class AddressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $data = $request->all();
         Address::create($data);
@@ -57,7 +59,7 @@ class AddressController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Address $address)
+    public function update(UpdateRequest $request, Address $address)
     {
         $data = $request->all();
         $address->update($data);
